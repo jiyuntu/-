@@ -4,13 +4,10 @@
 #include<algorithm>
 using namespace std;
 const int maxl=1000000+5;
-const int maxm=10;
 char s[maxl];
-int sa[maxl],c[maxm],x[maxl],y[maxl];
+int sa[maxl],c[maxl],x[maxl],y[maxl];
 
-int main()
-{
-    scanf("%s",s);//c from 0 to 9
+void build_suffix_array(int m){
     int l=strlen(s);
     for(int i=0;i<maxm;i++) c[i]=0;
     for(int i=0;i<l;i++) c[x[i]=s[i]-'0']++;
@@ -39,7 +36,13 @@ int main()
             //x[sa[i]]= (y[sa[i-1]]==y[sa[i]] && y[sa[i-1]+k]==y[sa[i]+k])?p-1:p++;
         }
         if(p>=l) break;
+        m=p;
     }
+}
+int main()
+{
+    scanf("%s",s);//c from 0 to 9
+    build_suffix_array(10);
     for(int i=0;i<l;i++) printf("%d ",sa[i]);
     printf("\n");
 }
