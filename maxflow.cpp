@@ -30,7 +30,7 @@ bool bfs(int s,int t)
     while(!q.empty()){
         int u=q.front(); q.pop();
         for(int i=0;i<G[u].size();i++){
-            Edge& e=edges[G[u][i]]; //¬°Ô£­n&?
+            Edge& e=edges[G[u][i]]; //Â¬Â°Ã”Â£Â­n&?
             if(dis[e.to]==-1 && e.cap>e.flow){
                 dis[e.to]=dis[u]+1;
                 q.push(e.to);
@@ -43,7 +43,7 @@ int dfs(int s,int t,int a)
 {
     if(s==t || a==0) return a;
     int flow=0,f;
-    for(int& i=cur[s];i<G[s].size();i++){//¥Î&¥i¥Hª½±µ§ï­È!
+    for(int& i=cur[s];i<G[s].size();i++){//Â¥ÃŽ&Â¥iÂ¥HÂªÂ½Â±ÂµÂ§Ã¯Â­Ãˆ!
         Edge& e=edges[G[s][i]];
         if(dis[s]+1==dis[e.to] && (f=dfs(e.to,t,min(a,e.cap-e.flow)))>0){
             e.flow+=f;
