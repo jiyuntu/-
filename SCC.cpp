@@ -1,4 +1,4 @@
-///SCC  strongly connected component ���V�Ϫ��j�s�q���q
+///SCC  strongly connected component ¦³¦V¹Ïªº±j³s³q¤À¶q
 #include<cstdio>
 #include<vector>
 #include<algorithm>
