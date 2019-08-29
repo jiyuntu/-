@@ -1,3 +1,5 @@
+//problem source: AtCoder Balanced Paths
+//tags: centroid decomposition, devide and conquer(tree)
 #include<cstdio>
 #include<vector>
 #include<cstring>
@@ -34,11 +36,7 @@ pii getcentroid(int u,int p,int szr)
 }
 void getup(int u,int p,int left,int right)
 {
-    /*printf("u=%d, p=%d, top=%d\n",u,p,top);
-    for(int i=0;i<top;i++) putchar(stk[i]);
-    putchar('\n');*/
     if(cal[u]) return;
-    //int op;
     if(s[u]=='('){
         if(right>0) right--;
         else left++;
@@ -93,7 +91,6 @@ void solve(int u)
 {
     getsize(u,-1);
     int c=getcentroid(u,-1,sz[u]).second;
-    //printf("c=%d\n",c);
     cal[c]=1;
     for(int i=0;i<=sz[u];i++) up[i]=0;
     for(int v:G[c]){
@@ -102,23 +99,15 @@ void solve(int u)
             else getup(v,c,0,0);
         }
     }
-    /*printf("up=:\n");
-    for(int i=0;i<=n;i++) printf("%d ",up[i]);
-    printf("\n");*/
     if(s[c]=='(') up[1]++;
     else ans+=up[1];
-    //printf("ans=%I64d\n",ans);
     for(int v:G[c]){
         if(!cal[v]){
-            //printf("v=%d\n",v);
             int ed;
             if(s[c]=='(') ed=getup2(v,c,1,0);
             else ed=getup2(v,c,0,0);
-            /*for(int i=0;i<=n;i++) printf("%d ",temp[i]);
-            printf("\n");*/
             if(s[c]==')') godown(v,c,0,1);
             else godown(v,c,0,0);
-            //printf("ans=%lld\n",ans);
             for(int i=0;i<=ed;i++) temp[i]=0;
         }
     }
@@ -128,7 +117,6 @@ void solve(int u)
 }
 int main()
 {
-    //freopen("input3.txt","r",stdin);
     scanf("%d%s",&n,s);
     for(int i=0;i<n-1;i++){
         int a,b;
@@ -142,61 +130,4 @@ int main()
     solve(0);
     printf("%lld\n",ans);
 }
-/*
-10
-(()))(()()
-1 2
-1 5
-1 3
-1 4
-4 6
-6 7
-7 8
-8 9
-8 10
-ans:10
-
-10
-))(((()())
-1 2
-1 4
-2 3
-4 6
-6 7
-6 10
-7 8
-2 5
-5 9
-ans:13
-
-10
-()()(((())
-1 2
-1 3
-1 4
-1 5
-1 6
-1 7
-1 8
-1 9
-1 10
-ans:4
-
-15
-()()))(()()()((
-6 1
-1 2
-1 4
-4 9
-4 5
-5 8
-8 7
-7 10
-10 3
-3 11
-10 12
-12 13
-8 14
-2 15
-*/
 
