@@ -1,4 +1,5 @@
 //Aliens
+//problem source: ntu judge 3222 "Cut the Sequence"
 #include<cstdio>
 #include<vector>
 #include<algorithm>
@@ -31,16 +32,6 @@ void get(ll p)
                     //cur[i]=now;
                 }
             }
-            /*ll temp=now|cur[j];
-            ll val=dp[j]+temp-cur[j];
-            if(val>dp[i]){
-                dp[i]=val;
-                shift[i]=shift[j];
-                cur[i]=temp;
-            }else if(val==dp[i] && shift[j]<shift[i]){
-                shift[i]=shift[j];
-                cur[i]=temp;
-            }*/
         }
         if(now+p>=dp[i]){
             dp[i]=now+p;
@@ -66,12 +57,6 @@ int main()
         auto it=unique(trans[i].begin(),trans[i].end());
         trans[i].resize(distance(trans[i].begin(),it));
     }
-    /*for(int i=0;i<n;i++){
-        for(int j:trans[i]){
-            printf("%d ",j);
-        }
-        printf("\n");
-    }*/
     //engrave this code in your mind!!!you won't want to get 9 WA's for an ALIEN next time!!!
     ll l=-4294967296ll,r=0,p;
     while(l<r){
@@ -82,25 +67,4 @@ int main()
     }
     get(l);
     printf("%lld\n",dp[n-1]-l*k);
-    /*int c=0;
-    while(r-l>=3){
-        p=l+(r-l)/2;
-        get(p);
-        //printf("p=%lld dp=%lld shift=%lld\n",p,dp[n-1],shift[n-1]);
-        if(shift[n-1]==k) {c=1; break;}
-        if(shift[n-1]<k) l=p+1;
-        else r=p;
-    }
-    if(c) printf("%lld\n",dp[n-1]-p*k);
-    else{
-        ll ans;
-        for(;l<=r;l++){
-            get(l);
-            if(shift[n-1]==k) {c=1; break;}
-            if(shift[n-1]<k) ans=dp[n-1]-l*k;
-        }
-        //printf("p=%lld dp=%lld shift=%lld\n",p,dp[n-1],shift[n-1]);
-        if(c) printf("%lld\n",dp[n-1]-l*k);
-        else printf("%lld\n",ans);
-    }*/
 }
