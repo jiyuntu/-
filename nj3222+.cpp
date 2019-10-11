@@ -6,7 +6,7 @@
 #include<cstring>
 using namespace std;
 typedef long long ll;
-ll a[200005],dp[200005],shift[200005]/*,cur[200005]*/;
+ll a[200005],dp[200005],shift[200005];
 int bit[40],n;
 vector<int> trans[200005];
 
@@ -14,7 +14,6 @@ void get(ll p)
 {
     dp[0]=a[0]+p;
     shift[0]=1;
-    //cur[0]=a[0];
     for(int i=1;i<n;i++){
         dp[i]=dp[i-1]+a[i]+p;
         shift[i]=shift[i-1]+1;
@@ -26,10 +25,8 @@ void get(ll p)
                 if(val>dp[i]){
                     dp[i]=val;
                     shift[i]=shift[j-1]+1;
-                    //cur[i]=now;
                 }else if(val==dp[i]){
                     shift[i]=min(shift[i],shift[j-1]+1);
-                    //cur[i]=now;
                 }
             }
         }
