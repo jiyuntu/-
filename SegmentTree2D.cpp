@@ -70,7 +70,7 @@ struct SegmentTree2D{
 			if(x2>mid) query2D(o*2+1,mid+1,r);
 		}
 	}
-	void query(int a,int b,int c,int d){
+	void query(int a,int b,int c,int d){ //query: x1,y1,x2,y2
 		x1=a, y1=b, x2=c, y2=d;
 		vmax=0, vmin=2147483647;
 		query2D(1,1,n);
@@ -117,30 +117,8 @@ struct SegmentTree2D{
 			modify1D(1,1,m);
 		}
 	}
-	void modify(int a,int b,int c){
+	void modify(int a,int b,int c){ //modify: x,y,v
 		x=a, y=b, v=c;
 		modify2D(1,1,n);
 	}
 }ST;
-
-int main()
-{
-	int n,m;
-	scanf("%d%d",&n,&m);
-	ST.init(n,m);
-	for(int i=1;i<=n;i++){
-		for(int j=1;j<=m;j++){
-			scanf("%d",&ST.a[i][j]);
-		}
-	}
-	ST.build();
-	//puts("yes");
-	int q;
-	scanf("%d",&q);
-	while(q--){
-		int x1,y1,x2,y2;
-		scanf("%d%d%d%d",&x1,&y1,&x2,&y2);
-		ST.query(x1,y1,x2,y2);
-		printf("%d\n",ST.vmax);
-	}
-}
