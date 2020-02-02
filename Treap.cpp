@@ -51,7 +51,6 @@ void remove(Node* &o,int x)
 }
 pii kth(Node* o,int k) //find the kth small
 {
-	//printf("%d %d %d\n",o->id,o->s,k);
 	if(o==NULL || k<=0 || k>o->s) return pii(0,0);
 	int s = o->ch[0]==NULL?0:o->ch[0]->s;
 	if(k==s+1) return pii(o->id,o->v);
@@ -65,34 +64,3 @@ void debug(Node* o){
 }
 
 Node* root = new Node(0,0);
-int main()
-{
-	int op,cur=1;
-	while(scanf("%d",&op) && op){
-		/*puts("now, debug!");
-		debug(root);*/
-		if(op==1){
-			int id,v;
-			scanf("%d%d",&id,&v);
-			insert(root,id,v);
-			cur++;
-		}else if(op==2){
-			if(cur==1) puts("0");
-			else{
-				pii x=kth(root,cur);
-				remove(root,x.second);
-				printf("%d\n",x.first);
-				cur--;
-			}
-		}else{
-			if(cur==1) puts("0");
-			else{
-				pii x=kth(root,2);
-				//printf("3: x.second=%d\n",x.second);
-				remove(root,x.second);
-				printf("%d\n",x.first);
-				cur--;
-			}
-		}
-	}
-}
