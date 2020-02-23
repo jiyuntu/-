@@ -1,1 +1,1 @@
-# ICPC L.L.L. Codebook
+ICPC L.L.L. Codebook
